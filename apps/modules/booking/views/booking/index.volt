@@ -4,6 +4,7 @@
 
 {% block content %}
 <div class="as-mainwrapper">
+{{flashSession.output()}}
   <!--Bg White Start-->
   <div class="bg-white">
     <!--Breadcrumb Banner Area Start-->
@@ -74,30 +75,33 @@
                             </div>
                             {% else %}
                             {% for pesan in pesanan %}
-                            <?php $img = explode('%%',$dest->gambar);?>
                             <div class="col-md-6">
                                 <div class="single-job-post">
                                      <div class="img-icon">
+                                        <?php $img = explode('%%',$pesan->paket->destinasi->gambar);?>
+                                        <img src="{{img[0]}}" style="width:200px">
                                     </div>
                                     <div class="address">
-                                        <p >Destinasi : {{pesan.paket.destinasi.judul}}</p>
+                                        <h6 >Destinasi : {{pesan.paket.destinasi.judul}}</h6>
                                           <p >Paket : {{pesan.paket.nama}}</p>
-                                          <p >Harga : {{pesan.paket.harga}}</p>
+                                          <p >Harga : Rp {{pesan.paket.harga}}</p>
                                           <p >Pengelola : {{pesan.paket.destinasi.users.nama}}</p>
-                                          <p >Tanggal Tiba : {{pesan.mulai}}</p>
-                                          <p >Tanggal Kepulangan : {{pesan.sampai}}</p>
-                                          {% if ( pesan.bukti_transfer == null )%}
+                                          <p >Tiba : {{pesan.mulai}}</p>
+                                          <p >Pulang : {{pesan.sampai}}</p>
+                                          <br>
+                                          {% if  pesan.bukti_transfer == null %}
                                           <form action="{{url('book')}}" method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="id_pesan" value={{pesan.id}}>
+                                            <input type="hidden" name="id_pesan" value="{{pesan.id}}">
                                             <label for='bukti_transfer'>Upload Bukti Transfer Disini</label>
                                             <input type="file" name="bukti_transfer">
-                                            <input type="submit">
+                                            <input type="submit" class="button">
                                           </form>
-                                          {% elseif(pesan.bukti_wisata != null) %}
+                                            {% elseif pesan.bukti_wisata == null %}
+                                            <p class="text-warning">Menunggu Konfirmasi</p>
+                                          {% elseif pesan.bukti_wisata != null %}
                                           <a href="{{url(pesan.bukti_wisata)}}">Bukti</a>
                                           {% endif %}
                                     </div>
-                                    <div class="button-box"><a href="{{url('destinasi/'~dest.id)}}" class="button button-black">Lihat Detail</a></div>
                                 </div>                                    
                             </div>
                             {% endfor %}

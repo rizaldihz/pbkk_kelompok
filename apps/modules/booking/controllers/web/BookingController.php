@@ -7,6 +7,7 @@ use MyLayout\MyController;
 use MyModel\Destinasi;
 use MyModel\Paket;
 use MyModel\Pesan;
+use MyModel\Pengunjung;
 
 class BookingController extends MyController
 {
@@ -104,55 +105,78 @@ class BookingController extends MyController
     {
         if($this->request->isPost()){
             if($this->request->hasFiles()){
-                $gambar = $this->request->getUploadedFiles();
                 $id = $this->request->getPost('id_pesan');
                 $pesan = Pesan::findFirst([
-                    "conditions"=>"id={$id}"
+                    "conditions"=>"id=:id:",
+                    'bind' => [
+                        'id' => $id
+                    ]
                 ]);
-                $pesan->bukti_transfer = base64_encode(file_get_contents($gambar[0]->getTempName()));
+                $file = $this->request->getUploadedFiles();
+                $file = $file[0];
+                $type = $file->getType();
+                if($type == 'application/pdf'){
+                    $key = ltrim($file->getKey(),"bukti_transfer.");
+                    $path = "files/pdf/{$id}{$this->session->get('auth')->username}{$key}.pdf";
+                    $file->moveTo($path);
+                    $bukti.=$path;
+                    $bukti.='%%';
+                    $pesan->bukti_transfer = $bukti;
+                }
+                else if($type == 'image/jpeg' || $type == 'image/png'){
+                    $key = ltrim($file->getKey(),"bukti_transfer.");
+                    $ext = ltrim($type,"image/");
+                    $path = "files/img/{$id}{$this->session->get('auth')->username}{$key}.{$ext}";
+                    $file->moveTo($path);
+                    $gambar.=$path;
+                    $gambar.='%%';
+                    $pesan->bukti_transfer = $gambar;
+                }
                 $pesan->save();
-                $this->response->redirect('book')->send();
+                $this->flashSession->set('success','Bukti Transfer Berhasil di upload');
+                $this->response->redirect('pesan');
             }   
             else{ 
                 $username = $this->session->get('auth')->username; 
                 $id_paket = $this->request->getPost('id_paket');
-                $mulai = $this->request->getPost('TanggalBerangkat');
-                $sampai = $this->request->getPost('TanggalPulang');
+                $mulai = $this->request->getPost('mulai');
+                $sampai = $this->request->getPost('sampai');
                 $nama = $this->request->getPost('nama');
-                $no = $this->request->getPost('no');
-                if(!(Pesan::count(["conditions"=>"username='{$username}' and id_paket={$id_paket}"])))
-                {
-                    $cart = $this->cookies->get('pesan');
-                    $cart = $cart->getValue();
-                    $cart = unserialize($cart);
-                    unset($cart[$username][$id_paket]);
-                    $this->cookies->set( 
-                        'pesan', 
-                        serialize($cart), 
-                        time() + 15 * 86400 
-                    );
+                $no = $this->request->getPost('no_ktp');
 
-                    $pesan = new Pesan();
-                    $pesan->id = (Pesan::count())+1;     
-                    $pesan->username = $username; 
-                    $pesan->id_paket = $id_paket;
-                    $pesan->mulai = $mulai;
-                    $pesan->sampai = $sampai;
-                    $pesan->bukti_transfer=null;
-                    $pesan->bukti_wisata=null;
-                    $i=0;
-                    $pesan->save();
-                    while($nama[$i]!=null)
-                    {
-                        $pengunjung = new Pengunjung();
-                        $pengunjung->id = (Pengunjung::count())+1;
-                        $pengunjung->id_pesan = $pesan->id;
-                        $pengunjung->nama = $nama[$i];
-                        $pengunjung->no_ktp = $no[$i];
-                        $pengunjung->save();
-                        $i++;
-                    }
+                $cart = $this->cookies->get('pesan');
+                $cart = $cart->getValue();
+                $cart = unserialize($cart);
+                unset($cart[$username][$id_paket]);
+                $this->cookies->set( 
+                    'pesan', 
+                    serialize($cart), 
+                    time() + 15 * 86400 
+                );
+
+                $pesan = new Pesan();   
+                $pesan->username = $username; 
+                $pesan->id_paket = $id_paket;
+                $pesan->mulai = $mulai;
+                $pesan->sampai = $sampai;
+                $pesan->bukti_transfer=null;
+                $pesan->bukti_wisata=null;
+                $i=0;
+                $pesan->save();
+                // var_dump($pesan->id);
+                while($nama[$i]!=null)
+                {
+                    $pengunjung = new Pengunjung();
+                    $pengunjung->id_pesan = $pesan->id;
+                    $pengunjung->nama = $nama[$i];
+                    $pengunjung->no_ktp = $no[$i];
+                    $pengunjung->save();
+                    // var_dump($pengunjung->getMessages());die();
+                    $i++;
                 }
+
+                $this->flash->message('success', "Pesanan Berhasil Dikirim. Mohon upload bukti transfer untuk menunggu konfirmasi.");
+                $this->response->redirect('pesan');
             }    
         }
         $id = $this->dispatcher->getParam('id');
