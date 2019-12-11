@@ -36,6 +36,27 @@ $di['router'] = function() use ($defaultModule, $modules, $di, $config) {
 	    'action' => 'logout'
 	]);
 
+	$router->addGet('/admin_page', [
+	    'namespace' => 'MyModule\Admin\Controllers\Web',
+		'module' => 'admin',
+	    'controller' => 'admin',
+	    'action' => 'pending'
+	]);
+
+	$router->addGet('/terima/{destinasi}', [
+	    'namespace' => 'MyModule\Admin\Controllers\Web',
+		'module' => 'admin',
+	    'controller' => 'admin',
+	    'action' => 'accept'
+	]);
+
+	$router->addGet('/tolak/{destinasi}', [
+	    'namespace' => 'MyModule\Admin\Controllers\Web',
+		'module' => 'admin',
+	    'controller' => 'admin',
+	    'action' => 'reject'
+	]);
+
 	$router->addGet('/destinasi', [
 	    'namespace' => 'MyModule\Destinasi\Controllers\Web',
 		'module' => 'destinasi',
