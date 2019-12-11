@@ -123,3 +123,9 @@ $di['db'] = function () use ($config) {
         "dbname" => $config->database->dbname
     ]);
 };
+
+$di->set('cookies', function () {
+  $cookies = new Phalcon\Http\Response\Cookies();
+  $cookies->useEncryption(false);
+  return $cookies;
+});

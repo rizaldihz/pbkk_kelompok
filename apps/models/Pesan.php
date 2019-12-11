@@ -17,18 +17,27 @@ class Pesan extends Model
         $this->setSource('pesan');
         $this->belongsTo(
             'username',
-            'Users',
-            'username'
+            'MyModel\Users',
+            'username',
+            [
+                'alias' => 'users'
+            ]
         ); 
         $this->belongsTo(
             'id_paket',
-            'Paket',
-            'id'
+            'MyModel\Paket',
+            'id',
+            [
+                'alias' => 'paket'
+            ]
         );
         $this->hasMany(
             'id',
-            'Pengunjung',
-            'id_pesan'
+            'MyModel\Pengunjung',
+            'id_pesan',
+            [
+                'alias' => 'pengunjung'
+            ]
         );
     }
 }

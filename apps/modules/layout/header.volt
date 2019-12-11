@@ -10,14 +10,14 @@
                 <div class="pull-right">
                     <nav id="primary-menu">
                         <ul class="main-menu text-right">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="job-board.html">Cari</a></li>
-                            <li><a href="about.html">Booking</a></li>
+                            <li><a href="{{url('')}}">Home</a></li>
+                            <li><a href="{{url('destinasi')}}">Cari</a></li>
                             <li><a href="about.html">Kelola Wisata</a></li>
                             {% if session.has('auth')%}
                             <li><a href="#">{{session.get('auth').nama}}</a>
                                 <ul class="dropdown">
                                     <li><a href="job-board.html">Profil</a></li>
+                                     <li><a href="{{url('pesan')}}">Pesanan Saya</a></li>
                                     <li><a href="{{url('logout')}}">Sign Out</a></li>
                                 </ul>
                             </li>

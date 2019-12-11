@@ -22,25 +22,11 @@ $di['router'] = function() use ($defaultModule, $modules, $di, $config) {
 	    'action' => 'register'
 	]);
 
-	$router->addGet('/register', [
-	    'namespace' => 'MyModule\Auth\Controllers\Web',
-		'module' => 'authentication',
-	    'controller' => 'authentication',
-	    'action' => 'registerindex'
-	]);
-
 	$router->addPost('/login', [
 	    'namespace' => 'MyModule\Auth\Controllers\Web',
 		'module' => 'authentication',
 	    'controller' => 'authentication',
 	    'action' => 'login'
-	]);
-
-	$router->addGet('/login', [
-	    'namespace' => 'MyModule\Auth\Controllers\Web',
-		'module' => 'authentication',
-	    'controller' => 'authentication',
-	    'action' => 'index'
 	]);
 	
 	$router->addGet('/logout', [
@@ -50,130 +36,43 @@ $di['router'] = function() use ($defaultModule, $modules, $di, $config) {
 	    'action' => 'logout'
 	]);
 
-	$router->addGet('/resipien/tambah', [
-	    'namespace' => 'MyModule\Recieve\Controllers\Web',
-		'module' => 'recieve',
-	    'controller' => 'resipien',
-	    'action' => 'tambah'
-	]);
-
-	$router->addPost('/resipien/tambah', [
-	    'namespace' => 'MyModule\Recieve\Controllers\Web',
-		'module' => 'recieve',
-	    'controller' => 'resipien',
-	    'action' => 'tambah'
-	]);
-
-	$router->addGet('/resipien', [
-	    'namespace' => 'MyModule\Recieve\Controllers\Web',
-		'module' => 'recieve',
-	    'controller' => 'resipien',
+	$router->addGet('/destinasi', [
+	    'namespace' => 'MyModule\Destinasi\Controllers\Web',
+		'module' => 'destinasi',
+	    'controller' => 'destinasi',
 	    'action' => 'index'
 	]);
 
-	$router->addPost('/resipien', [
-	    'namespace' => 'MyModule\Recieve\Controllers\Web',
-		'module' => 'recieve',
-	    'controller' => 'resipien',
+	$router->addGet('/destinasi/{id}', [
+	    'namespace' => 'MyModule\Destinasi\Controllers\Web',
+		'module' => 'destinasi',
+	    'controller' => 'destinasi',
+	    'action' => 'detail'
+	]);
+
+	$router->addGet('/pesan', [
+	    'namespace' => 'MyModule\Booking\Controllers\Web',
+		'module' => 'booking',
+	    'controller' => 'booking',
 	    'action' => 'index'
 	]);
-
-	$router->addGet('/resipien/edit/{param}', [
-	    'namespace' => 'MyModule\Recieve\Controllers\Web',
-		'module' => 'recieve',
-	    'controller' => 'resipien',
-	    'action' => 'edit'
+	$router->addGet('/rencana/{id}', [
+	    'namespace' => 'MyModule\Booking\Controllers\Web',
+		'module' => 'booking',
+	    'controller' => 'booking',
+	    'action' => 'pesan'
 	]);
-
-	$router->addPost('/resipien/edit', [
-	    'namespace' => 'MyModule\Recieve\Controllers\Web',
-		'module' => 'recieve',
-	    'controller' => 'resipien',
-	    'action' => 'edit'
-	]);
-
-	$router->addPost('/resipien/hapus', [
-	    'namespace' => 'MyModule\Recieve\Controllers\Web',
-		'module' => 'recieve',
-	    'controller' => 'resipien',
+	$router->addGet('/rencana/hapus/{id}', [
+	    'namespace' => 'MyModule\Booking\Controllers\Web',
+		'module' => 'booking',
+	    'controller' => 'booking',
 	    'action' => 'hapus'
 	]);
-
-	$router->addGet('/kebutuhan/tambah', [
-	    'namespace' => 'MyModule\Recieve\Controllers\Web',
-		'module' => 'recieve',
-	    'controller' => 'kebutuhan',
-	    'action' => 'tambah'
-	]);
-
-	$router->addPost('/kebutuhan/tambah', [
-	    'namespace' => 'MyModule\Recieve\Controllers\Web',
-		'module' => 'recieve',
-	    'controller' => 'kebutuhan',
-	    'action' => 'tambah'
-	]);
-
-	$router->addGet('/kebutuhan', [
-	    'namespace' => 'MyModule\Recieve\Controllers\Web',
-		'module' => 'recieve',
-	    'controller' => 'kebutuhan',
-	    'action' => 'index'
-	]);
-
-	$router->addPost('/kebutuhan', [
-	    'namespace' => 'MyModule\Recieve\Controllers\Web',
-		'module' => 'recieve',
-	    'controller' => 'kebutuhan',
-	    'action' => 'index'
-	]);
-
-	$router->addGet('/kebutuhan/edit/{param}', [
-	    'namespace' => 'MyModule\Recieve\Controllers\Web',
-		'module' => 'recieve',
-	    'controller' => 'kebutuhan',
-	    'action' => 'edit'
-	]);
-
-	$router->addPost('/kebutuhan/edit', [
-	    'namespace' => 'MyModule\Recieve\Controllers\Web',
-		'module' => 'recieve',
-	    'controller' => 'kebutuhan',
-	    'action' => 'edit'
-	]);
-
-	$router->addPost('/kebutuhan/hapus', [
-	    'namespace' => 'MyModule\Recieve\Controllers\Web',
-		'module' => 'recieve',
-	    'controller' => 'kebutuhan',
-	    'action' => 'hapus'
-	]);
-
-	$router->addGet('/donasi/tambah', [
-	    'namespace' => 'MyModule\Donasi\Controllers\Web',
-		'module' => 'donasi',
-	    'controller' => 'donasi',
-	    'action' => 'tambah'
-	]);
-
-	$router->addPost('/donasi/tambah', [
-	    'namespace' => 'MyModule\Donasi\Controllers\Web',
-		'module' => 'donasi',
-	    'controller' => 'donasi',
-	    'action' => 'tambah'
-	]);
-
-	$router->addGet('/donasi', [
-	    'namespace' => 'MyModule\Donasi\Controllers\Web',
-		'module' => 'donasi',
-	    'controller' => 'donasi',
-	    'action' => 'index'
-	]);
-
-	$router->addPost('/donasi', [
-	    'namespace' => 'MyModule\Donasi\Controllers\Web',
-		'module' => 'donasi',
-	    'controller' => 'donasi',
-	    'action' => 'index'
+	$router->addGet('/book/{id}', [
+	    'namespace' => 'MyModule\Booking\Controllers\Web',
+		'module' => 'booking',
+	    'controller' => 'booking',
+	    'action' => 'book'
 	]);
 	/**
 	 * Not Found Routing

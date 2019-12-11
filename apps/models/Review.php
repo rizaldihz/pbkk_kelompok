@@ -14,13 +14,19 @@ class Review extends Model
         $this->setSource('review');
         $this->belongsTo(
             'username',
-            'Users',
-            'username'
+            'MyModel\Users',
+            'username',
+            [
+                'alias' => 'users'
+            ]
         ); 
         $this->belongsTo(
             'id_wisata',
-            'Wisata',
-            'id'
+            'MyModel\Wisata',
+            'id',
+            [
+                'alias' => 'wisata'
+            ]
         );
     }
 }

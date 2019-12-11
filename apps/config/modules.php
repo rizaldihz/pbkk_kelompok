@@ -32,6 +32,16 @@ return array(
         'defaultController' => 'authentication',
         'defaultAction' => 'index'
     ],
+    'booking' => [
+        'namespace' => 'MyModule\Booking',
+        'webControllerNamespace' => 'MyModule\Booking\Controllers\Web',
+        'apiControllerNamespace' => 'MyModule\Booking\Controllers\Api',
+        'className' => 'MyModule\Booking\Module',
+        'path' => APP_PATH . '/modules/booking/Module.php',
+        'defaultRouting' => false,
+        'defaultController' => 'booking',
+        'defaultAction' => 'index'
+    ],
     // 'recieve' => [
     //     'namespace' => 'MyModule\Recieve',
     //     'webControllerNamespace' => 'MyModule\Recieve\Controllers\Web',

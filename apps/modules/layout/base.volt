@@ -9,7 +9,7 @@
     
     <!-- favicon
     ============================================ -->        
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="{{url('assets/logo.png')}}">
     
     <!-- Google Fonts
     ============================================ -->        
@@ -45,6 +45,9 @@
     <!-- Responsive CSS
     ============================================ -->
     <link rel="stylesheet" href="{{url('jobhere/css/responsive.css')}}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{url('adminlte/bower_components/font-awesome/css/font-awesome.min.css')}}">
     
     <!-- Modernizr JS -->
     <script src="{{url('jobhere/js/vendor/modernizr-2.8.3.min.js')}}"></script>

@@ -16,20 +16,29 @@ class Destinasi extends Model
 
     public function initialize(){
         $this->setSource('destinasi');
-        $this->hasOne(
+        $this->hasMany(
             'id',
-            'Wisata',
-            'id_wisata'
+            'MyModel\Wisata',
+            'id_wisata',
+            [
+                'alias' => 'wisata'
+            ]
         );
         $this->hasMany(
             'id',
-            'Paket',
-            'id_wisata'
+            'MyModel\Paket',
+            'id_wisata',
+            [
+                'alias' => 'paket'
+            ]
         );  
         $this->belongsTo(
             'username',
-            'Users',
-            'username'
+            'MyModel\Users',
+            'username',
+            [
+                'alias' => 'users'
+            ]
         );
     }
 }

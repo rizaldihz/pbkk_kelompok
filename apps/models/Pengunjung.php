@@ -14,8 +14,11 @@ class Pengunjung extends Model
         $this->setSource('pengunjung'); 
         $this->belongsTo(
             'id_pesan',
-            'Pesan',
-            'id'
+            'MyModel\Pesan',
+            'id',
+            [
+                'alias' => 'pesan'
+            ]
         );
     }
 }

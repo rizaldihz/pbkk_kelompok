@@ -1,43 +1,47 @@
 {% extends '../layout/index.volt' %}
 
-{% block title %}Selamat Datang{% endblock %}
+{% block title %}Daftar Destinasi{% endblock %}
 
 {% block content %}
 <div class="as-mainwrapper">
   <!--Bg White Start-->
   <div class="bg-white">
-    <!-- Search Form Start -->
-    <div class="search-catestyle2">
+    <!--Breadcrumb Banner Area Start-->
+    <div class="breadcrumb-banner-area pt-94 pb-85" style="background:rgba(0, 0, 0, 0) url('{{url("img/find.jpg")}}') no-repeat scroll center top / cover;">
         <div class="container">
             <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-text">
+                        <h2 class="text-center" style="color:white">Cari Wisata</h2>
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+             <div class="row">
                 <div class="col-lg-12 ml-auto mr-auto">
-                    
-                    <div class="job-search-content text-center">
-                        <form action="{{url('cari')}}" method="post">
-                            <div class="form-container">
-                                <div class="row">
-                                    <div class="col-8">
-                                        <div class="box-select">
-                                            <input type="text" name="cari" style="height:60px">
-                                        </div>
+                    <form action="{{url('cari')}}" method="post">
+                        <div class="form-container">
+                            <div class="row">
+                                <div class="col-9 pull-right">
+                                    <div class="box-select">
+                                        <input type="text" name="cari" style="height:60px">
                                     </div>
-                                    <div class="col-4">
-                                        <div class="box-select">
-                                            <div class="select">
-                                                <button type="button">Search</button>
-                                            </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="box-select">
+                                        <div class="select">
+                                            <button type="button">Search</button>
                                         </div>
                                     </div>
                                 </div>
-                                
-                            </div>
-                        </form> 
-                    </div>
+                            </div>   
+                        </div>
+                    </form> 
                 </div>
             </div>
         </div>
     </div>
-    <!-- Search Form End -->
+    <!--End of Breadcrumb Banner Area-->
     <!--Start of Job Post Area-->
     <div class="canditates-area ptb-130 ptb-sm-60">
         <div class="container">
@@ -65,7 +69,7 @@
                                         <h6>{{dest.judul}}</h6>
                                         <p>{{dest.deskripsi}}</p>
                                     </div>
-                                    <div class="button-box"><a href="#" class="button button-black">Lihat Detail</a></div>
+                                    <div class="button-box"><a href="{{url('destinasi/'~dest.id)}}" class="button button-black">Lihat Detail</a></div>
                                 </div>                                    
                             </div>
                             {% endfor %}

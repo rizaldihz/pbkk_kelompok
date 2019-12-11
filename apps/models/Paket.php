@@ -16,13 +16,19 @@ class Paket extends Model
         $this->setSource('paket');
         $this->belongsTo(
             'id_wisata',
-            'Destinasi',
-            'id'
+            'MyModel\Destinasi',
+            'id',
+            [
+                'alias' => 'destinasi'
+            ]
         ); 
         $this->hasMany(
             'id',
-            'Pesan',
-            'id_paket'
+            'MyModel\Pesan',
+            'id_paket',
+            [
+                'alias' => 'pesan'
+            ]
         ); 
     }
 }

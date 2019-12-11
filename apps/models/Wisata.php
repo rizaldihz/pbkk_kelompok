@@ -12,13 +12,19 @@ class Wisata extends Model
         $this->setSource('wisata');
         $this->belongsTo(
             'id_wisata',
-            'Destinasi',
-            'id'
+            'MyModel\Destinasi',
+            'id',
+            [
+                'alias' => 'destinasi'
+            ]
         );
         $this->hasMany(
             'id',
-            'Review',
-            'id_wisata'
+            'MyModel\Review',
+            'id_wisata',
+            [
+                'alias' => 'review'
+            ]
         );
  
     }
