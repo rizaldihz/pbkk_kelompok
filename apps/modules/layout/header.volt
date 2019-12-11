@@ -16,6 +16,9 @@
                             {% if session.has('auth')%}
                             <li><a href="#">{{session.get('auth').nama}}</a>
                                 <ul class="dropdown">
+                                    {% if session.get('auth').admin %}
+                                    <li><a href="{{url('admin_page')}}">Admin</a></li>
+                                    {% endif %}
                                     <li><a href="job-board.html">Profil</a></li>
                                      <li><a href="{{url('pesan')}}">Pesanan Saya</a></li>
                                     <li><a href="{{url('logout')}}">Sign Out</a></li>
