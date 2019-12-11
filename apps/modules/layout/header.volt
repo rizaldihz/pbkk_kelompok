@@ -12,7 +12,7 @@
                         <ul class="main-menu text-right">
                             <li><a href="{{url('')}}">Home</a></li>
                             <li><a href="{{url('destinasi')}}">Cari</a></li>
-                            <li><a href="about.html">Kelola Wisata</a></li>
+                            <li><a href="{{url('kelola')}}">Kelola Wisata</a></li>
                             {% if session.has('auth')%}
                             <li><a href="#">{{session.get('auth').nama}}</a>
                                 <ul class="dropdown">

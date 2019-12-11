@@ -23,6 +23,14 @@ return new Config(
             'cacheDir' => APP_PATH . "/cache/",
         ],
 
+        'smtp' => [
+            'address' => 'smtp.gmail.com',
+            'port' => '587',
+            'enc' => 'tls',
+            'username' => 'pbkk.its@gmail.com',
+            'password' => 'Kelompok2@'
+        ],
+
         'version' => '0.1',
     ]
 );

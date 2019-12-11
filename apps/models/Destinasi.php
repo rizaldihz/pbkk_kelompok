@@ -3,8 +3,9 @@
 namespace MyModel;
 
 use Phalcon\Mvc\Model; 
+use MyModel\My_Model;
 
-class Destinasi extends Model 
+class Destinasi extends My_Model 
 {     
     public $id;     
     public $username;
