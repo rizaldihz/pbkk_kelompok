@@ -74,6 +74,12 @@ $di['router'] = function() use ($defaultModule, $modules, $di, $config) {
 	    'controller' => 'booking',
 	    'action' => 'book'
 	]);
+	$router->addPost('/book', [
+	    'namespace' => 'MyModule\Booking\Controllers\Web',
+		'module' => 'booking',
+	    'controller' => 'booking',
+	    'action' => 'book'
+	]);
 	/**
 	 * Not Found Routing
 	 */

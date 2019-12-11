@@ -57,7 +57,6 @@
                             </div>
                             <div class="title"><span>Pemesan</span></div>
                             <div class="single-job-form">
-                            	<input type="hidden" name="username" value="{{session.get('auth').username}}" style="display:none">
                                 <div class="single-info mb-14">
                                     <label for="company-name" class="uppercase pull-left m-0">Nama Peseman</label>
                                     <div class="form-box fix">
@@ -67,25 +66,25 @@
                                 <div class="single-info mb-14">
                                     <label for="company-name" class="uppercase pull-left m-0">Tanggal Mulai</label>
                                     <div class="form-box fix">
-                                        <input type="date" name="mulai" id="company-name" class="form-control">
+                                        <input type="date" name="mulai" class="form-control">
                                     </div>
                                 </div>
                                 <div class="single-info mb-14">
                                     <label for="company-name" class="uppercase pull-left m-0">Tanggal Hingga</label>
                                     <div class="form-box fix">
-                                        <input type="date" name="sampai" id="company-name" class="form-control">
+                                        <input type="date" name="sampai" class="form-control">
                                     </div>
                                 </div>
                                 <div class="single-info mb-14">
                                     <label for="company-name" class="uppercase pull-left m-0">Nama Pengunjung</label>
                                     <div class="form-box fix">
-                                        <input type="text" id="company-name" name="nama[]">
+                                        <input type="text" id="nama-pengunjung" name="nama[]">
                                     </div>
                                 </div>
                                 <div class="single-info mb-14">
                                     <label for="company-name" class="uppercase pull-left m-0">Nomor KTP</label>
                                     <div class="form-box fix">
-                                        <input type="text" id="company-name" nama="no_ktp[]">
+                                        <input type="text" id="nomor-ktp" name="no_ktp[]">
                                     </div>
                                 </div>
                                 <div class="single-info mb-14">
@@ -93,7 +92,7 @@
                                     <a href="#" class="hapusmember">(-) HAPUS</a>
                                 </div>
                                 <div class="ml-160 mt-38">
-                                    <a href="#" class="button button-large-box">Preview</a>
+                                    <input type="submit" class="button button-large-box">
                                 </div>
                             </div>
                         </div>
@@ -107,4 +106,42 @@
   <!--End of Bg White--> 
 </div>    
 <!--End of Main Wrapper Area--> 
+{% endblock %}
+{% block morejs %}
+<script >
+$(document).ready(function(){
+    var total_member =1;
+
+    function tambahMember(){
+
+        var n =total_member + 1;
+
+        var isi = '<div class="single-info mb-14"><label for="company-name" class="uppercase pull-left m-0">Nama Pengunjung</label><div class="form-box fix"><input type="text" id="nama-pengunjung" name="nama[]"></div></div><div class="single-info mb-14"><label for="company-name" class="uppercase pull-left m-0">Nomor KTP</label><div class="form-box fix"><input type="text" id="nomor-ktp" nama="no_ktp[]"></div></div>'
+
+        $('a.tambahmember').before(isi);
+        $('#tambahmember'+total_member).slideDown('medium');
+        total_member++;
+    }
+
+    function hapusMember(){
+        total_member--;
+        if(total_member<=1){
+            total_member =1;
+        }
+        
+        $('#tambahmember'+total_member).slideUp('medium',function(){
+            $(this).remove();
+        });
+    }
+
+    $('a.tambahmember').click(function(){
+        tambahMember();
+    });
+
+    $('a.hapusmember').click(function(){
+        hapusMember();
+    });
+
+});
+</script>
 {% endblock %}
