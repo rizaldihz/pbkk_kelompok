@@ -1,0 +1,7 @@
+{
+    "require": {
+        "vlucas/phpdotenv": "^3.3",
+        // "almasaeed2010/adminlte": "~2.4",
+        "m1ome/phalcon-datatables": "1.*"
+    }
+}
