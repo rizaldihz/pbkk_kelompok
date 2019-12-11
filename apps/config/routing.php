@@ -50,6 +50,20 @@ $di['router'] = function() use ($defaultModule, $modules, $di, $config) {
 	    'action' => 'detail'
 	]);
 
+	$router->addGet('/kelola', [
+	    'namespace' => 'MyModule\Destinasi\Controllers\Web',
+		'module' => 'destinasi',
+	    'controller' => 'kelola',
+	    'action' => 'index'
+	]);
+
+	$router->addPost('/kelola', [
+	    'namespace' => 'MyModule\Destinasi\Controllers\Web',
+		'module' => 'destinasi',
+	    'controller' => 'kelola',
+	    'action' => 'store'
+	]);
+
 	$router->addGet('/pesan', [
 	    'namespace' => 'MyModule\Booking\Controllers\Web',
 		'module' => 'booking',

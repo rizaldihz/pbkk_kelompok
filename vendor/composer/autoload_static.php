@@ -24,10 +24,6 @@ class ComposerStaticInitea81e84ec063c6af92c708a09b5ccc0f
             'Dotenv\\' => 7,
             'DataTables\\' => 11,
         ),
-        'C' => 
-        array (
-            'Composer\\Installers\\' => 20,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -46,10 +42,6 @@ class ComposerStaticInitea81e84ec063c6af92c708a09b5ccc0f
         'DataTables\\' => 
         array (
             0 => __DIR__ . '/..' . '/m1ome/phalcon-datatables/src',
-        ),
-        'Composer\\Installers\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
         ),
     );
 

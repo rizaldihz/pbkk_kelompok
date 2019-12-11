@@ -42,6 +42,16 @@ return array(
         'defaultController' => 'booking',
         'defaultAction' => 'index'
     ],
+    'admin' => [
+        'namespace' => 'MyModule\Admin',
+        'webControllerNamespace' => 'MyModule\Admin\Controllers\Web',
+        'apiControllerNamespace' => 'MyModule\Admin\Controllers\Api',
+        'className' => 'MyModule\Admin\Module',
+        'path' => APP_PATH . '/modules/Admin/Module.php',
+        'defaultRouting' => false,
+        'defaultController' => 'admin',
+        'defaultAction' => 'index'
+    ],
     // 'recieve' => [
     //     'namespace' => 'MyModule\Recieve',
     //     'webControllerNamespace' => 'MyModule\Recieve\Controllers\Web',
