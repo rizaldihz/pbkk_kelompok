@@ -76,6 +76,22 @@
                                         <input type="date" name="sampai" id="company-name" class="form-control">
                                     </div>
                                 </div>
+                                <div class="single-info mb-14">
+                                    <label for="company-name" class="uppercase pull-left m-0">Nama Pengunjung</label>
+                                    <div class="form-box fix">
+                                        <input type="text" id="company-name" name="nama[]">
+                                    </div>
+                                </div>
+                                <div class="single-info mb-14">
+                                    <label for="company-name" class="uppercase pull-left m-0">Nomor KTP</label>
+                                    <div class="form-box fix">
+                                        <input type="text" id="company-name" nama="no_ktp[]">
+                                    </div>
+                                </div>
+                                <div class="single-info mb-14">
+                                    <a href="#" class="tambahmember">(+) TAMBAH</a> 
+                                    <a href="#" class="hapusmember">(-) HAPUS</a>
+                                </div>
                                 <div class="ml-160 mt-38">
                                     <a href="#" class="button button-large-box">Preview</a>
                                 </div>
