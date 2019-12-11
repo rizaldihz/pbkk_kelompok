@@ -46,11 +46,6 @@ class BookingController extends MyController
         $this->view->detail = $des;
         $this->view->author = $des->users;
         $this->view->paket = $des->paket;
-        // if($tes->valid()){
-        //     $this->view->review = $des->wisata->review;
-        // }else{
-        //     $this->view->review = null;
-        // }
         
         $this->view->pick('views/destinasi/detail');
     }
