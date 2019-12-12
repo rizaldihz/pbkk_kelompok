@@ -12,6 +12,7 @@
                       <div class="area-title text-center mb-43">
                           <h1>CampTour</h1>
                       </div>
+                      {{flashSession.output()}}
                       <form method="post" action="{{url('login')}}">
                           <div class="form-box">
                               <input type="text" name="username" placeholder="Username" class="mb-14">

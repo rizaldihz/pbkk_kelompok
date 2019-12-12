@@ -99,7 +99,7 @@
                                             {% elseif pesan.bukti_wisata == null %}
                                             <p class="text-warning">Menunggu Konfirmasi</p>
                                           {% elseif pesan.bukti_wisata != null %}
-                                          <a href="{{url(pesan.bukti_wisata)}}">Bukti</a>
+                                          <a href="{{url('book/detail/'~pesan.id)}}">Bukti</a>
                                           {% endif %}
                                     </div>
                                 </div>                                    

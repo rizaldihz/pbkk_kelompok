@@ -16,6 +16,7 @@ class Module implements ModuleDefinitionInterface
             'MyModule\Auth\Controllers\Web' => __DIR__ . '/controllers/web',
             'MyModule\Auth\Controllers\Api' => __DIR__ . '/controllers/api',
             'MyModule\Auth\Models' => __DIR__ . '/models',
+            'MyModule\Auth\Validator' => __DIR__ . '/validator',
         ]);
 
         $loader->register();

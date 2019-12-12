@@ -115,6 +115,26 @@ $di['router'] = function() use ($defaultModule, $modules, $di, $config) {
 	    'controller' => 'booking',
 	    'action' => 'book'
 	]);
+	$router->addGet('/terima/pesan/{destinasi}', [
+	    'namespace' => 'MyModule\Admin\Controllers\Web',
+		'module' => 'admin',
+	    'controller' => 'admin',
+	    'action' => 'acceptpesan'
+	]);
+
+	$router->addGet('/tolak/pesan/{destinasi}', [
+	    'namespace' => 'MyModule\Admin\Controllers\Web',
+		'module' => 'admin',
+	    'controller' => 'admin',
+	    'action' => 'tolakpesan'
+	]);
+
+	$router->addGet('/book/detail/{id}', [
+	    'namespace' => 'MyModule\Booking\Controllers\Web',
+		'module' => 'booking',
+	    'controller' => 'booking',
+	    'action' => 'detail'
+	]);
 	/**
 	 * Not Found Routing
 	 */

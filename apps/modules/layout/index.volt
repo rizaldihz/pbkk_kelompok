@@ -19,33 +19,16 @@
 	<div class="footer-widget-area ptb-80 pb-sm-30">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-md-5">
+				<div class="col-lg-12 col-md-12 text-center">
 					<div class="single-footer-widget">
 						<h3 class="text-white mb-26">GET IN TOUCH</h3>
-						<span class="text-white mb-9"><i class="fa fa-phone"></i>+012 345 678 102 </span>
-						<span class="text-white mb-9"><i class="fa fa-envelope"></i>info@example.com</span>
-						<span class="text-white mb-9"><i class="fa fa-globe"></i>www.example.com</span>
-						<span class="text-white mb-9"><i class="fa fa-map-marker"></i>ur address goes here,street.</span>
+						<p class="text-white mb-9"><i class="fa fa-phone"></i> +628 223 272 2879 </p>
+						<p class="text-white mb-9"><i class="fa fa-envelope"></i> pbkk2@example.com</p>
+						<p class="text-white mb-9"><i class="fa fa-globe"></i> www.pbkk2.com</p>
+						<p class="text-white mb-9"><i class="fa fa-map-marker"></i> ITS</p>
 					</div>
 				</div>                                
-				<div class="col-lg-3 col-md-3">
-					<div class="single-footer-widget">
-						<h3 class="text-white mb-21">By Regions</h3>
-						
-					</div>
-				</div>
-				<div class="col-lg-3 d-md-none d-lg-block">
-					<div class="single-footer-widget">
-						<h3 class="text-white mb-21">Job Types</h3>
-						
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-4">
-					<div class="single-footer-widget">
-						<h3 class="text-white mb-21">Keyword By Jobs</h3>
-						
-					</div>
-				</div>
+				
 			</div>
 		</div>
 	</div>

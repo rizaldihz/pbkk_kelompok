@@ -5,6 +5,7 @@ namespace MyModule\Auth\Controllers\Web;
 use Phalcon\Mvc\Controller;
 use MyModel\Users;
 use Phalcon\Http\Request;
+use MyModule\Auth\Validator\MyValidator;
 
 class AuthenticationController extends Controller
 {
@@ -36,42 +37,56 @@ class AuthenticationController extends Controller
         {
             $random = new \Phalcon\Security\Random();
             $data = $_POST;
+            $validation = new MyValidator();
+
+            $messages = $validation->validate($data);
+
+            if (count($messages)) {
+                $this->flashSession->error('Registrasi Gagal, mohon cek kembali data');
+                foreach ($messages as $message) {
+                    $pesan[$message->getField()] = $message->getMessage();
+                    $this->flashSession->error($message->getMessage());
+                }
+
+                $this->response->redirect('');
+                return;
+            }
             // if(!$form->isValid($this->request->getPost())){
             //     $this->flashSession->error('Register gagal, mohon cek kembali data');
             //     $this->response->redirect('register');
             // }
             // else{
-                $user = new Users();
-                $username = $this->request->getPost('username');
-                if(!(Users::findFirst("username='$username'"))){
-                    $nama = $this->request->getPost('nama');
-                    $telepon = $this->request->getPost('telepon');
-                    $email = $this->request->getPost('email');
-                    $password = $this->security->hash($this->request->getPost('password'));
-                    $repassword = $this->request->getPost('repassword');
-                    if($this->security->checkHash($repassword,$password)){
-                        $user->username = $username;
-                        $user->email = $email;
-                        $user->password = $password;
-                        $user->telepon = $telepon;
-                        $user->nama = $nama;
-                        $user->admin = 0;
-                        if($user->save() === false)
-                        {
-                            $this->view->disable();
-                            $this->flashSession->error('Register gagal, mohon cek kembali data');
-                            $this->response->redirect();
-                        }
-                        else{
-                            $this->view->disable();
-                            $this->flashSession->success('Register Sukses');
-                            $this->response->redirect();
-                        }
+            $user = new Users();
+            $username = $this->request->getPost('username');
+            if(!(Users::findFirst("username='$username'"))){
+                $nama = $this->request->getPost('nama');
+                $telepon = $this->request->getPost('telepon');
+                $email = $this->request->getPost('email');
+                $password = $this->security->hash($this->request->getPost('password'));
+                $repassword = $this->request->getPost('repassword');
+                if($this->security->checkHash($repassword,$password)){
+                    $user->username = $username;
+                    $user->email = $email;
+                    $user->password = $password;
+                    $user->telepon = $telepon;
+                    $user->nama = $nama;
+                    $user->admin = 0;
+                    if($user->save() === false)
+                    {
+                        $this->view->disable();
+                        $this->flashSession->error('Register gagal, mohon cek kembali data');
+                        $this->response->redirect();
+                    }
+                    else{
+                        $this->view->disable();
+                        $this->flashSession->success('Register Sukses');
+                        $this->response->redirect('');
                     }
                 }
-                else{
-                    $this->response->redirect();
-                }
+            }
+            else{
+                $this->response->redirect('');
+            }
             // }
         }
     }
@@ -89,7 +104,7 @@ class AuthenticationController extends Controller
                     $this->session->set(
                         'auth', $user
                     );
-                    $this->response->redirect('admin');    
+                    $this->response->redirect('admin_page');    
                 }else{
                     $this->session->set(
                         'auth', $user

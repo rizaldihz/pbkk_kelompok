@@ -36,18 +36,22 @@ class BookingController extends MyController
     public function detailAction()
     {
         $id = $this->dispatcher->getParam('id');
-        $des = Destinasi::findFirst([
+        $des = Pesan::findFirst([
             'conditions' => 'id = :id:',
             'bind' => [
                 'id' => $id
             ]
         ]);
+        $pengunjung = Pengunjung::find([
+            'conditions' => 'id_pesan = :id:',
+            'bind' => [
+                'id' => $id
+            ]
+        ]);
+        $this->view->pesan = $des;
+        $this->view->pengunjung = $pengunjung;
         if($des == null) $this->response->redirect('404');
-        $this->view->detail = $des;
-        $this->view->author = $des->users;
-        $this->view->paket = $des->paket;
-        
-        $this->view->pick('views/destinasi/detail');
+        $this->view->pick('views/booking/bukti');
     }
 
     public function pesanAction()
