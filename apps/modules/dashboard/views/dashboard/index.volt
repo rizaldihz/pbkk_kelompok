@@ -94,7 +94,7 @@
                                         <h6>{{dest.judul}}</h6>
                                         <p>{{dest.deskripsi}}</p>
                                     </div>
-                                    <div class="button-box"><a href="#" class="button button-black">Lihat Detail</a></div>
+                                    <div class="button-box"><a href="{{url('destinasi/'~dest.id)}}" class="button button-black">Lihat Detail</a></div>
                                 </div>                                    
                             </div>
                             {% endfor %}
